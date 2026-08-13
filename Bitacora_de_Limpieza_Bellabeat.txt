@@ -1,0 +1,30 @@
+=================================================================
+CASO DE ESTUDIO: BELLABEAT
+Fase de Procesamiento y Limpieza de Datos (Data Processing & Cleaning)
+Herramienta: Microsoft Excel (Data Modeling & Power Pivot)
+=================================================================
+
+1. AUDITORÍA INICIAL Y CONTROL DE CALIDAD (QA)
+-----------------------------------------------------------------
+- Conjunto de datos de origen: "FitBit Fitness Tracker Data" (Kaggle).
+- Se ejecutó un escaneo de valores nulos (Nulls/Blanks) utilizando filtros dinámicos en las columnas clave de los archivos `dailyActivity_merged.csv` y `sleepDay_merged.csv`.
+- Resultado: No se detectaron celdas vacías, garantizando la integridad de las variables transaccionales.
+
+2. DEDUPLICACIÓN DE DATOS
+-----------------------------------------------------------------
+- Se aplicó la función nativa "Quitar Duplicados" de Excel sobre todas las tablas de origen.
+- Objetivo: Eliminar registros redundantes causados por posibles errores de sincronización de los dispositivos Fitbit del usuario final, asegurando que las estadísticas (promedios) no se vieran sesgadas.
+
+3. ESTANDARIZACIÓN Y PARSEO DE FECHAS (ETL)
+-----------------------------------------------------------------
+- Problema detectado: Las columnas temporales (`ActivityDate` y `SleepDay`) presentaban un error de formateo de origen, almacenándose como cadenas de texto plano y concatenando horas residuales nulas (ej. "4/12/2016 12:00:00 AM").
+- Solución aplicada: Se utilizó la herramienta "Texto en Columnas" (Delimitador de espacio) para separar la fecha de la hora residual. Posteriormente se purgó la columna de horas y se aplicó formato de Fecha Corta (DD/MM/AAAA) a la variable principal.
+- Resultado: Habilitación de la dimensión temporal para la agrupación cronológica en las tablas dinámicas.
+
+4. ARQUITECTURA DEL MODELO RELACIONAL (POWER PIVOT)
+-----------------------------------------------------------------
+- Extracción de Entidades: Se copió la columna `Id` de la tabla de actividad diaria y se removieron los duplicados para aislar exactamente 33 usuarios únicos.
+- Creación de Primary Key: La lista de 33 IDs se transformó en una Tabla de Excel Oficial nombrada `TablaUsuarios` (Dimensión maestra).
+- Estructura de Tablas de Hechos (Fact Tables): Se nombraron las tablas transaccionales origen como `TablaDiaria`, `TablaHoras`, y `TablaSueno`.
+- Modelado (JOINs lógicos): Se utilizó el menú de "Relaciones" en la pestaña Datos para conectar las tres tablas transaccionales a la `TablaUsuarios` mediante la clave foránea `Id` (Relación Uno a Muchos [1:N]).
+- Activación de Power Pivot: Las Tablas Dinámicas finales fueron generadas a través del "Modelo de Datos de este libro", permitiendo que un Slicer (Segmentador de datos) global filtre todos los gráficos de forma simultánea e interactiva sin necesidad de funciones BUSCARV.

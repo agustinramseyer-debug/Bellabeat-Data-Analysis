@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte Estratégico - Bellabeat</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+        body { 
+            font-family: 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            color: #334e68; 
+            background-color: #f0f4f8; 
+            margin: 0; 
+            padding: 40px; 
+        }
+        .container { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            background-color: #ffffff; 
+            padding: 40px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            border-top: 8px solid #d96b79;
+            border-radius: 8px;
+        }
+        h1 { 
+            color: #102a43; 
+            font-size: 2.2em; 
+            margin-bottom: 5px; 
+            font-weight: 800; 
+            letter-spacing: -0.5px;
+        }
+        .subtitle {
+            font-size: 1.1em;
+            color: #627d98;
+            margin-bottom: 30px;
+        }
+        h2 { 
+            color: #102a43; 
+            font-size: 1.4em; 
+            border-bottom: 2px solid #bcccdc; 
+            padding-bottom: 10px; 
+            margin-top: 35px; 
+            font-weight: 700; 
+        }
+        p, li { 
+            line-height: 1.6; 
+            font-size: 1em; 
+            color: #486581; 
+        }
+        .meta { 
+            display: flex; 
+            justify-content: space-between; 
+            border-bottom: 1px solid #d9e2ec; 
+            padding-bottom: 15px; 
+            margin-bottom: 25px; 
+            font-size: 0.85em; 
+            color: #829ab1; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .highlight { 
+            background-color: #f0f4f8; 
+            padding: 15px; 
+            border-left: 4px solid #243b53; 
+            margin: 20px 0; 
+            font-weight: 500;
+            border-radius: 0 4px 4px 0;
+            color: #102a43;
+        }
+        .dashboard-img { 
+            width: 100%; 
+            border: 1px solid #d9e2ec; 
+            border-radius: 6px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            margin: 20px 0 20px 0; 
+            display: block;
+        }
+        .btn-drive {
+            display: inline-block;
+            background-color: #d96b79;
+            color: #ffffff !important;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .btn-drive:hover {
+            background-color: #c05c6a;
+        }
+        .strategy-list { 
+            list-style-type: none; 
+            padding-left: 0; 
+        }
+        .strategy-list li { 
+            margin-bottom: 15px; 
+            background: #ffffff; 
+            padding: 15px; 
+            border: 1px solid #e4e7eb;
+            border-left: 5px solid #d96b79;
+            border-radius: 6px; 
+            page-break-inside: avoid;
+        }
+        .strategy-list strong { 
+            color: #102a43; 
+            display: block; 
+            margin-bottom: 5px; 
+            font-size: 1.1em; 
+        }
+        .tag {
+            background-color: #e4e7eb;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            color: #486581;
+            font-weight: 600;
+            margin-right: 5px;
+        }
+        .enlace-directo {
+            font-size: 0.85em;
+            color: #829ab1;
+            display: block;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .enlace-directo a {
+            color: #d96b79;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Análisis de Tendencias de Bienestar</h1>
+        <div class="subtitle">Estudio de Caso: Bellabeat</div>
+        
+        <div class="meta">
+            <span>Certificado Profesional de Google Data Analytics</span>
+            <span>Herramientas: MS Excel (Data Modeling & Power Pivot)</span>
+        </div>
+
+        <div class="highlight">
+            <strong>Objetivo de Negocio (Ask):</strong> Analizar los datos históricos de uso de dispositivos inteligentes de salud y fitness para identificar tendencias de comportamiento en los consumidores. El objetivo es aplicar estos insights para que los stakeholders clave (Urška Sršen y Sando Mur) puedan diseñar una nueva estrategia de marketing basada en datos para los productos de Bellabeat.
+        </div>
+
+        <h2>Preparación y Limitaciones de los Datos (Prepare)</h2>
+        <p>Para este análisis, se utilizó el conjunto de datos público "FitBit Fitness Tracker Data" alojado en Kaggle y puesto a disposición por Mobius, el cual incluye el seguimiento a nivel de minutos de 30 usuarios. Se realizó una evaluación de calidad <strong>ROCCC</strong> identificando las siguientes limitaciones críticas:</p>
+        <ul>
+            <li><strong>Confiabilidad (Baja/Media):</strong> La muestra es pequeña (30 usuarios), limitando la significancia estadística a un nivel exploratorio.</li>
+            <li><strong>Originalidad (Baja):</strong> Es información de terceros (Third-party data), no datos de origen directo de la empresa.</li>
+            <li><strong>Completitud (Baja):</strong> El conjunto carece de información demográfica clave. Siendo Bellabeat una marca enfocada en mujeres, no poder filtrar los datos por género introduce un sesgo potencial en el análisis.</li>
+        </ul>
+
+        <h2>Arquitectura de Datos y Power Pivot (Process)</h2>
+        <p>El procesamiento y modelado se ejecutó en <strong>Microsoft Excel</strong>. Para superar las limitaciones de las funciones de búsqueda tradicionales (como BUSCARV), se implementó un flujo de Inteligencia de Negocios avanzado utilizando <strong>Power Pivot</strong>. Las acciones técnicas clave incluyeron:</p>
+        <ul>
+            <li><strong>Limpieza y Estandarización:</strong> Auditoría de valores nulos, eliminación de duplicados y uso de la herramienta "Texto en columnas" para delimitar y parsear variables de fecha almacenadas incorrectamente como texto plano.</li>
+            <li><strong>Extracción de Entidades (Primary Key):</strong> Se aislaron los 33 identificadores únicos de la base de datos para crear una Tabla de Dimensión maestra (<code>TablaUsuarios</code>).</li>
+            <li><strong>Modelado Relacional:</strong> Se activó el motor de Power Pivot para construir una base de datos relacional dentro de Excel. Se establecieron relaciones "Uno a Muchos" (1:N) entre la tabla maestra de usuarios y las tablas transaccionales (Actividad diaria, Pasos por hora y Registros de sueño).</li>
+        </ul>
+
+        <h2>Descubrimientos del Modelo de Datos (Analyze & Share)</h2>
+        <p>Gracias a la arquitectura de datos construida, se desarrolló un Dashboard donde un único Segmentador de Datos (Slicer) controla de forma global e interactiva las métricas provenientes de múltiples orígenes de datos distintos:</p>
+
+        <!-- IMAGEN -->
+        <img src="Demostracion_Dashboard.jpg" alt="Dashboard Excel Bellabeat" class="dashboard-img">
+        
+        <div style="text-align: center; margin-top: 25px; margin-bottom: 10px;">
+            <a href="https://drive.google.com/uc?export=download&id=1ZlI6cfExG1SYNFrMaWgA_3-mKgCgqfVN" class="btn-drive">
+                Descargar Dashboard Interactivo (.xlsx)
+            </a>
+        </div>
+        <div class="enlace-directo">
+            <strong>Enlace directo:</strong> <a href="https://drive.google.com/uc?export=download&id=1ZlI6cfExG1SYNFrMaWgA_3-mKgCgqfVN">https://drive.google.com/uc?export=download&id=1ZlI6cfExG1SYNFrMaWgA_3-mKgCgqfVN</a>
+            <br>
+            *Requiere abrir con Microsoft Excel de escritorio para visualizar el Modelo de Datos (Power Pivot).
+        </div>
+
+        <ul>
+            <li><strong>Perfil de Actividad Diaria (Análisis Semanal):</strong> Aunque la estadística descriptiva general arrojó un promedio de 7,638 pasos y 2,304 calorías al día (por debajo de la meta médica de 10,000 pasos), el <em>Gráfico 1</em> revela visualmente cómo se distribuye este volumen a lo largo de la semana. Los usuarios alcanzan picos de actividad saludables los martes y sábados, pero caen drásticamente en el sedentarismo los días domingo.</li>
+            <li><strong>Tendencias Horarias:</strong> Existe una "Meseta Laboral" de actividad moderada entre las 8:00 AM y las 4:00 PM, seguida de un pico máximo de actividad post-laboral entre las 5:00 PM y las 7:00 PM.</li>
+            <li><strong>Hábitos y Calidad del Sueño:</strong> Los usuarios pasan un promedio de 458 minutos en la cama (aprox. 7.6 horas), pero el tiempo real de descanso es de solo 419 minutos. Esto revela una <strong>latencia de sueño de 39 minutos</strong> (tiempo de vigilia improductiva en cama).</li>
+        </ul>
+
+        <h2>Estrategia Accionable (Act)</h2>
+        <p>Basándonos en estas métricas empíricas, se proponen las siguientes intervenciones directas en la estrategia de marketing y experiencia de usuario para Bellabeat:</p>
+        
+        <ul class="strategy-list">
+            <li>
+                <strong><span class="tag">CUÁNDO</span> Alertas de "Horario Prime"</strong>
+                Configurar alertas inteligentes o notificaciones push en dispositivos (Leaf/Time) a las <strong>5:30 PM</strong>, aprovechando el momento exacto de mayor propensión a la actividad, para motivar a las usuarias a cerrar la brecha hacia la meta de los 10,000 pasos.
+            </li>
+            <li>
+                <strong><span class="tag">QUÉ</span> Estrategia de Membresía (Sleep Latency)</strong>
+                Utilizar la brecha improductiva de 39 minutos de latencia de sueño como el dolor central (pain point) para campañas de conversión. Promocionar el contenido premium de la Membresía Bellabeat (mindfulness y sonidos nocturnos) como una solución para optimizar el descanso y reducir la vigilia nocturna.
+            </li>
+            <li>
+                <strong><span class="tag">CÓMO</span> Campañas Dinámicas de Fin de Semana</strong>
+                Implementar comunicación segmentada por día para combatir el fuerte declive detectado los domingos:
+                <br><br>
+                - <strong>Sábado (Celebración):</strong> Reconocer el esfuerzo en el día de mayor actividad: <em>"¡Estás on fire este fin de semana! Sigue así."</em><br>
+                - <strong>Domingo (Motivación Extra):</strong> Combatir el desplome de actividad a media mañana: <em>"¡Feliz domingo! Sabemos que es día de descanso, pero un paseo de 20 minutos te ayudará a recargar energías para la semana."</em>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
