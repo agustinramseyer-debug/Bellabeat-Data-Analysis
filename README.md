@@ -1,4 +1,4 @@
-# 🌸 Estudio de Caso Bellabeat: Análisis de Tendencias de Bienestar
+# 🏃‍♀️ Estudio de Caso Bellabeat: Análisis de Tendencias de Bienestar
 
 **Certificado Profesional de Análisis de Datos de Google | Proyecto Final (Track 2)**
 
