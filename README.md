@@ -11,7 +11,7 @@
 ## 🌐 Reporte Interactivo (Live Web)
 He transformado este análisis en un reporte ejecutivo web. Puedes leer las conclusiones completas, la estrategia de marketing recomendada y descargar el Dashboard funcional haciendo clic en el siguiente enlace:
 
-👉 **[Ver el Reporte Ejecutivo en Vivo][]**
+👉 **[Ver el Reporte Ejecutivo en Vivo][https://agustinramseyer-debug.github.io/Bellabeat-Data-Analysis/]**
 
 ---
 
